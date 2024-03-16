@@ -93,7 +93,7 @@ pipeline {
     }
     stage("Deploy To Tomcat"){
       steps{
-        sh "sudo cp -r /var/lib/jenkins/workspace/devsecops1/target/demo-0.0.1-SNAPSHOT.jar /opt/apache-tomcat-9.0.87/webapps/ "
+        sh "sudo cp -r /opt/jenkins/workspace/javawebapp/target/demo-0.0.1-SNAPSHOT.jar /opt/apache-tomcat-9.0.87/webapps/ "
       }
     }
   }
