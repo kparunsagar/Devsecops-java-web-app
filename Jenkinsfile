@@ -86,5 +86,10 @@ pipeline {
         sh 'docker push kparun/javawebapp:$BUILD_NUMBER'
       }
     }
+    stage("TRIVY"){
+      steps{
+        sh " trivy image kparun/javawebapp:$BUILD_NUMBER"
+      }
+    }
   }
 }
