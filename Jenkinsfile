@@ -73,7 +73,7 @@ pipeline {
     }
     stage("Build docker image"){
       steps {
-        sh 'docker build -t kparun/petclinic:$BUILD_NUMBER .'
+        sh 'docker build -t kparun/javawebapp:$BUILD_NUMBER .'
       }
     }
     stage("Login to docker hub"){
