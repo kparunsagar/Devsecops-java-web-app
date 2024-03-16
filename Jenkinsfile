@@ -11,6 +11,7 @@ pipeline {
       SCANNER_HOME=tool 'sonarQube'
       registry = "kparun/javawebapp"
       registryCredential = 'docker'
+      dockerImage = ''
       CI = true
       ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
   }
@@ -76,15 +77,16 @@ pipeline {
 
     stage("Build docker image"){
       steps {
-        sh 'docker build -t kparun/javawebapp:$BUILD_NUMBER .'
+        scripts  {
+          dockerImage = docker.build registry
       }
     }
     stage("Login to docker hub"){
       steps {
         scripts {
-          sh 'docker.withRegistry( '', registryCredential ) '
-          sh 'dockerImage.push() '
-          
+          docker.withRegistry( '', registryCredential ) {
+          dockerImage.push() '
+          }
         }
       }
     }
