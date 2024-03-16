@@ -9,7 +9,8 @@ pipeline {
   }
   environment {
       SCANNER_HOME=tool 'sonarQube'
-      DOCKERHUB_CREDENTIALS = credentials('docker')
+      registry = "kparun/javawebapp"
+      registryCredential = 'docker'
       CI = true
       ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
   }
@@ -80,9 +81,11 @@ pipeline {
     }
     stage("Login to docker hub"){
       steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        scripts {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
       }
-    }
     stage("Docker push"){
       steps {
         sh 'docker push kparun/javawebapp:$BUILD_NUMBER'
