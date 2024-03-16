@@ -85,7 +85,9 @@ pipeline {
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
+        }
       }
+    }
     stage("Docker push"){
       steps {
         sh 'docker push kparun/javawebapp:$BUILD_NUMBER'
