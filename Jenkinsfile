@@ -80,7 +80,7 @@ pipeline {
     }
     stage("Login to docker hub"){
       steps {
-        sh 'echo "$DOCKER_REGISTRY_PASS" | docker login $DOCKERHUB_CREDENTIALS --username $DOCKERHUB_CREDENTIALS --password-stdin'
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage("Docker push"){
