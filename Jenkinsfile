@@ -82,9 +82,9 @@ pipeline {
     stage("Login to docker hub"){
       steps {
         scripts {
-          docker.withRegistry( '', registryCredential ) {
-          dockerImage.push()
-          }
+          sh 'docker.withRegistry( '', registryCredential ) '
+          sh 'dockerImage.push() '
+          
         }
       }
     }
