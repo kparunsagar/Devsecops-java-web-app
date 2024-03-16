@@ -9,7 +9,6 @@ pipeline {
   }
   environment {
       SCANNER_HOME=tool 'sonarQube'
-      DOCKER_TOKEN: ${{ env.DOCKER_TOKEN }}
       DOCKERHUB_CREDENTIALS = credentials('docker')
       CI = true
       ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
@@ -81,7 +80,7 @@ pipeline {
     }
     stage("Login to docker hub"){
       steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        sh 'echo "$DOCKER_REGISTRY_PASS" | docker login $DOCKERHUB_CREDENTIALS --username $DOCKERHUB_CREDENTIALS --password-stdin'
       }
     }
     stage("Docker push"){
