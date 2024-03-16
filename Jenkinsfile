@@ -52,7 +52,7 @@ pipeline {
     }
     stage('Packaging') {
       steps {
-        step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
+        step([$class: 'ArtifactArchiver', artifacts: '**/target/* ', fingerprint: true])
       }
     }         
     stage ("Artifactory Publish"){
