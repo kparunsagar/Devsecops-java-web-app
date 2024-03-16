@@ -69,12 +69,10 @@ pipeline {
           def buildInfo = rtMaven.run pom: '$workspace/pom.xml', goals: 'clean install'
           rtMaven.deployer.deployArtifacts = true
           rtMaven.deployer.deployArtifacts buildInfo
-
           server.publishBuildInfo buildInfo
         }
       }
     }
-
     stage("Build docker image"){
       steps {
         scripts  {
@@ -94,6 +92,7 @@ pipeline {
       steps {
         sh 'docker push kparun/javawebapp:$BUILD_NUMBER'
       }
+    }
     }
   }
 }
