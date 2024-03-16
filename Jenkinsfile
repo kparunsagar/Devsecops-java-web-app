@@ -9,9 +9,7 @@ pipeline {
   }
   environment {
       SCANNER_HOME=tool 'sonarQube'
-      registry = "kparun/javawebapp"
-      registryCredential = 'docker'
-      dockerImage = ''
+      DOCKERHUB_CREDENTIALS = credentials('docker')
       CI = true
       ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
   }
@@ -75,24 +73,18 @@ pipeline {
     }
     stage("Build docker image"){
       steps {
-        scripts  {
-          dockerImage = docker.build registry
+        sh 'docker build -t kparun/petclinic:$BUILD_NUMBER .'
       }
     }
     stage("Login to docker hub"){
       steps {
-        scripts {
-          docker.withRegistry( '', registryCredential ) {
-          dockerImage.push()
-          }
-        }
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage("Docker push"){
       steps {
         sh 'docker push kparun/javawebapp:$BUILD_NUMBER'
       }
-    }
     }
   }
 }
