@@ -83,7 +83,7 @@ pipeline {
       steps {
         scripts {
           docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
+          dockerImage.push()
           }
         }
       }
