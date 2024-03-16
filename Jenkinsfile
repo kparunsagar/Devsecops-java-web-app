@@ -58,7 +58,7 @@ pipeline {
     stage ("Artifactory Publish"){
       steps {
         script{
-          def server = Artifactory.server 'artifactory'
+          def server = Artifactory.server 'Artifactory'
           def rtMaven = Artifactory.newMavenBuild()
           //rtMaven.resolver server: server, releaseRepo: 'jenkinsdemo_repo', snapshotRepo: 'demopipeline'
           rtMaven.deployer server: server, releaseRepo: 'javaproject-javarelease-snapshot', snapshotRepo: 'javaproject-javaprojectlocal-snapshot'
