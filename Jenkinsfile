@@ -16,7 +16,7 @@ pipeline {
   stages {
     stage("Git Checkout"){
       steps{
-        git branch: 'main', changelog: false, poll: false, url: 'https://github.com/kparunsagar/java-web-app.git'
+        git branch: 'main', changelog: false, poll: false, url: 'https://github.com/kparunsagar/Devsecops-java-web-app.git'
       }
     }
             
