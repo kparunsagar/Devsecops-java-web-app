@@ -21,7 +21,7 @@ pipeline {
         }
       }
       steps {
-        sh 'jfrog rt upload --url http://20.244.86.184:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} target/petclinic.war java-web-app/'
+        sh 'jfrog rt upload --url http://20.244.86.184:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} target/petclinic.war petclinc/'
       }
     }
   }
