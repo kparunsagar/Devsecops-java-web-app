@@ -8,11 +8,10 @@
 		<version>2.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>petclinc</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>petclinc</name>
-	<description>petclinc project for Spring Boot</description>
+    	<name>Spring Framework Petclinic</name>
+    	<packaging>war</packaging>
+    	<description>A Spring Framework application based on JSP, Spring MVC, Spring Data JPA, Hibernate and JDBC</description>
+    	<url>https://spring-petclinic.github.io/</url>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
